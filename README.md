@@ -1,5 +1,5 @@
 # PIC
-PIC assembly programs are stored in these repository. The assembly programs are developed with PIC-AS assembler. And they are simulated using MPLAB X IDE. 
+PIC assembly programs are given here. The assembly programs are developed with PIC-AS assembler. And they are simulated using MPLAB X IDE. 
 The programs available are
 1. Blink
 2. Addition
