@@ -78,7 +78,7 @@ main:
     MOVWF RESLT,a          ; Save the added sum in W reg to loc 10H
     
      movlw   0x01	
-     btfsc   STATUS,0
+     btfss   STATUS,0
      movwf   BORW,a
     
 HERE: GOTO HERE        ; Infinite loop here
