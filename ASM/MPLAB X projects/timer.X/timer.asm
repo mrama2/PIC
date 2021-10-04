@@ -63,9 +63,6 @@
 
  
           A1 equ 0x20
-	  A2 equ 0x21
-	  A3 equ 0x22
-	  A4 equ 0x23
 
  PSECT res_vect, class=code, reloc=2
  res_vect:
@@ -76,68 +73,45 @@ main:
  	CLRF STATUS,a
 	 
 
-	  CLRF A4,a
-	  CLRW
-	  CLRF TMR1L,a
-	  CLRF TMR1H,a
-	  CLRF INTCON,a
-	  CLRF PORTC,a
-	  CLRF PORTB,a
-	  MOVLW 0X64
-	  MOVWF A1,a
-	  MOVWF A2,a
-	  BSF A4,0,a
-	  BSF STATUS,5,a
-	  CLRF TRISC,a
-	  CLRF TRISB,a
+	  CLRW        ;  w =0
+	  CLRF TMR1L,a ; TMR1L = 0
+	  CLRF TMR1H,a ; TMR1H = 0
+	  CLRF INTCON,a ; INTCON = 0
+	  CLRF PORTC,a   ; PORTC =0
+	  MOVLW 0X64   ; w = 100
+	  MOVWF A1,a   ; A1 = 100
+	  CLRF TRISC,a  ; TRIC = 0 All PORTC pins as output
 	  BSF INTCON,7,a           ;SET GLOBAL INTERRUPTS ENABLE BIT
           
 	  BSF INTCON,6,a		 ;SET PERIPHERAL INTERRUPT ENABLE BIT
 	  BSF PIE1,0,a		 ;TIMER1 INTERRUPT ENABLE BIT
-	  
-	  BCF STATUS,5,a           ;BANK 0 SELECTION
-	  
-	  MOVLW 0XAA
-	  MOVWF PORTC,a
-
 	
-	  MOVLW 0X10
+	  MOVLW 0X10       ; w = 0x10
 	  MOVWF T1CON,a            ;1:2 PRESCALE VALUE, TIMER1 OSC ENABLED
 
-	  MOVLW 0X85             ;TIMER1 IS LOADED WITH A VALUE 
+	  MOVLW 0X57             ;TIMER1 IS LOADED WITH A VALUE 
 	  MOVWF TMR1L,a	 	 ;EQUIVALENT TO 50ms DELAY
-	  MOVLW 0X6D		 
+	  MOVLW 0X9E		 
 	  MOVWF TMR1H,a
 
-	  BSF T1CON,0,a
+	  BSF T1CON,0,a  ; Turn on timer
 LOOP:	  GOTO LOOP
 
     
          PSECT isr_vect, class=code, reloc=2
 	 goto isr
-	 ORG 0x100
+	 ORG 0x200
 	 isr:
-          BCF PIR1,0	; CLEAR THE INTERRUPT FLAG
+          BCF PIR1,0,a	; CLEAR THE INTERRUPT FLAG
 	  DECFSZ A1,1
 	  GOTO EXIT
-	  MOVF A2,0		;MOVE A2 CONTENT TO W
+	  BTG PORTC, 4, a
+	  MOVLW 0x64
 	  MOVWF A1,a
-
-	  BTFSS A4,0,a
-	  GOTO SEC
-
-	  BCF A4,0,a		;IF A4 IS 0X01 DISPLAY 0XCC AT PORTC
-	  MOVLW 0XCC
-	  MOVWF PORTC, a
-	  GOTO EXIT
-
-SEC:  BSF A4,0,a		;IF A4 IS 0X00 DISPLAY 0XAA AT PORTC
-	  MOVLW 0XAA
-	  MOVWF PORTC,a
 	  	  
-EXIT: MOVLW 0X85
+EXIT: MOVLW 0X57
 	  MOVWF TMR1L,a           ;RELOAD THE TIMER
-	  MOVLW 0X6D
+	  MOVLW 0X9E
 	  MOVWF TMR1H,a
 	  RETFIE
 
