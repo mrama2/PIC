@@ -1,0 +1,61 @@
+__S0 8000 0 ABS 0
+__S1 0 0 ABS 0
+__S3 0 0 ABS 0
+__Hudata_bank4 4 0 ABS 0
+__Ludata_bank4 4 0 ABS 0
+__Hconfig 30000E 0 CONFIG 4
+__Lconfig 0 0 CONFIG 4
+__Hudata_acs 4 0 ABS 0
+__Ludata_acs 4 0 ABS 0
+isa$xinst 0 0 ABS 0
+__Hudata_bank5 4 0 ABS 0
+__Ludata_bank5 4 0 ABS 0
+__Hcode 4 0 ABS 0
+__Lcode 4 0 ABS 0
+__Hdata 4 0 ABS 0
+__Ldata 4 0 ABS 0
+isa$std 1 0 ABS 0
+__Hudata_bank0 4 0 ABS 0
+__Ludata_bank0 4 0 ABS 0
+__Hedata 4 0 ABS 0
+__Ledata 4 0 ABS 0
+__Hudata 4 0 ABS 0
+__Ludata 4 0 ABS 0
+__Hudata_bank1 4 0 ABS 0
+__Ludata_bank1 4 0 ABS 0
+__Hspace_0 8000 0 ABS 0
+__Lspace_0 0 0 ABS 0
+__Hspace_1 0 0 ABS 0
+__Lspace_1 0 0 ABS 0
+__Hspace_3 0 0 ABS 0
+__Lspace_3 0 0 ABS 0
+__Hspace_4 60000F 0 ABS 0
+__Lspace_4 0 0 ABS 0
+__Hres_vect 4 0 CODE 0
+__Lres_vect 0 0 CODE 0
+__Hudata_bank2 4 0 ABS 0
+__Ludata_bank2 4 0 ABS 0
+__Hudata_bank3 4 0 ABS 0
+__Ludata_bank3 4 0 ABS 0
+%segments
+res_vect 0 3 CODE 0 0
+code 7FE4 7FFF CODE 7FE4 0
+%locals
+build/default/debug/uart.o
+C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\proc\\pic18f4520.inc
+uart.asm
+72 7FE4 0 CODE 0
+73 7FE6 0 CODE 0
+74 7FE8 0 CODE 0
+75 7FEA 0 CODE 0
+76 7FEC 0 CODE 0
+77 7FEE 0 CODE 0
+79 7FF0 0 CODE 0
+80 7FF2 0 CODE 0
+82 7FF4 0 CODE 0
+83 7FF6 0 CODE 0
+85 7FF8 0 CODE 0
+86 7FFA 0 CODE 0
+87 7FFC 0 CODE 0
+uart.asm
+68 0 0 CODE 0
